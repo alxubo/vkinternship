@@ -14,21 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserService {
 
-    private final JwtService jwtService;
     private final UserRepository userAuthRepository;
-
-    public ValidateResponse validateUser(String authHeader) throws IllegalArgumentException {
-
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            throw new IllegalArgumentException("Invalid http header");
-        }
-
-        final String jwt = authHeader.substring(7);
-        final String username = jwtService.extractUsernameFromToken(jwt);
-        final String role = jwtService.extractRoleFromToken(jwt);
-
-        return new ValidateResponse(username, role);
-    }
 
     public List<User> getAllUsers() {
         return userAuthRepository.findAll();

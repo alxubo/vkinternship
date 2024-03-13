@@ -20,6 +20,7 @@ public class UserController {
 
     private final UserService userService;
 
+    // some simple endpoints for testing
     @GetMapping("/list")
     public ResponseEntity<List<User>> listUsers() {
         return ResponseEntity.status(200).body(userService.getAllUsers());
