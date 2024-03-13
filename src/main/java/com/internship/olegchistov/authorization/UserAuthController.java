@@ -18,7 +18,6 @@ public class UserAuthController {
     @PostMapping("/login")
     @CrossOrigin
     public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest userLoginRequest) {
-        log.info("User " + userLoginRequest.username() + " is connecting");
         return ResponseEntity.status(200).body(userAuthService.loginUser(userLoginRequest));
     }
 

@@ -16,45 +16,45 @@ import static com.internship.olegchistov.models.RolePermissions.*;
 @RequiredArgsConstructor
 public enum Role {
 
-  ADMIN(
-          Set.of(
-                  POSTS_VIEWER,
-                  POSTS_EDITOR,
-                  USERS_VIEWER,
-                  USERS_EDITOR,
-                  ALBUMS_VIEWER,
-                  ALBUMS_EDITOR
-          )
-  ),
-  POSTS(
-          Set.of(
-                  POSTS_VIEWER,
-                  POSTS_EDITOR
-          )
-  ),
-  USERS(
-          Set.of(
-                  USERS_VIEWER,
-                  USERS_EDITOR
-          )
-  ),
-  ALBUMS(
-          Set.of(
-                  ALBUMS_VIEWER,
-                  ALBUMS_EDITOR
-          )
-  )
+    ADMIN(
+            Set.of(
+                    ADMIN_VIEWER,
+                    ADMIN_EDITOR,
+                    POSTS_VIEWER,
+                    POSTS_EDITOR,
+                    USERS_VIEWER,
+                    USERS_EDITOR,
+                    ALBUMS_VIEWER,
+                    ALBUMS_EDITOR
+            )
+    ),
+    POSTS(
+            Set.of(
+                    POSTS_VIEWER,
+                    POSTS_EDITOR
+            )
+    ),
+    USERS(
+            Set.of(
+                    USERS_VIEWER,
+                    USERS_EDITOR
+            )
+    ),
+    ALBUMS(
+            Set.of(
+                    ALBUMS_VIEWER,
+                    ALBUMS_EDITOR
+            )
+    );
 
-  ;
+    private final Set<RolePermissions> permissions;
 
-  private final Set<RolePermissions> permissions;
-
-  public List<SimpleGrantedAuthority> getAuthorities() {
-    var authorities = getPermissions()
-            .stream()
-            .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
-            .collect(Collectors.toList());
-    authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
-    return authorities;
-  }
+    public List<SimpleGrantedAuthority> getAuthorities() {
+        var authorities = getPermissions()
+                .stream()
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                .collect(Collectors.toList());
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
+        return authorities;
+    }
 }

@@ -20,28 +20,12 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/validate")
-    @CrossOrigin
-    public ResponseEntity<ValidateResponse> validateUser(@NonNull HttpServletRequest request) {
-        try {
-            final String authHeader = request.getHeader("Authorization");
-
-            return ResponseEntity.status(200).body(userService.validateUser(authHeader));
-        } catch (IllegalArgumentException e) {
-            log.warn("Endpoint users/validate error: " + e.getMessage());
-            return ResponseEntity.status(404).body(null);
-        }
-
-    }
-
     @GetMapping("/list")
-    @CrossOrigin
     public ResponseEntity<List<User>> listUsers() {
         return ResponseEntity.status(200).body(userService.getAllUsers());
     }
 
     @DeleteMapping("/delete/{id}")
-    @CrossOrigin
     public void deleteUser(@PathVariable ObjectId id) {
         userService.deleteUserById(id);
     }

@@ -27,15 +27,19 @@ public class UserAuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse loginUser(UserLoginRequest userLoginRequest) {
+
+        // if the authentication fails it will throw an exception
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 userLoginRequest.username(),
                 userLoginRequest.password()
-        )); // throws exception
+        ));
+
 
         User user = userAuthRepository.findUserByUsername(userLoginRequest.username())
                 .orElseThrow(() -> new UsernameNotFoundException("User with such username is not in db"));
 
         var jwtResponseToken = jwtService.generateJwtTokenFromUserModel(user);
+
         return AuthResponse.builder()
                 .success(jwtResponseToken)
                 .build();
@@ -55,9 +59,11 @@ public class UserAuthService {
                 .password(passwordEncoder.encode(userRegisterRequest.password()))
                 .role(userRegisterRequest.role())
                 .build();
-        System.out.println(user.getAuthorities());
+
         userAuthRepository.save(user);
+
         var jwtResponseToken = jwtService.generateJwtTokenFromUserModel(user);
+
         return AuthResponse.builder()
                 .success(jwtResponseToken)
                 .build();

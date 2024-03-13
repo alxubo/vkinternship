@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum RolePermissions {
 
+    ADMIN_VIEWER("admin:read"),
+    ADMIN_EDITOR("admin:update"),
     POSTS_VIEWER("posts:read"),
     POSTS_EDITOR("posts:update"),
     USERS_VIEWER("users:read"),

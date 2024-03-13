@@ -1,0 +1,87 @@
+###
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "adminUser",
+  "password": "adminUser",
+  "role": "ADMIN"
+}
+
+###
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "postsUser",
+  "password": "postsUser",
+  "role": "POSTS"
+}
+
+###
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "usersUser",
+  "password": "usersUser",
+  "role": "USERS"
+}
+
+
+###
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "albumsUser",
+  "password": "albumsUser",
+  "role": "ALBUMS"
+}
+
+
+
+
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "postsUser",
+  "password": "postsUser"
+}
+
+###
+GET http://localhost:8080/api/posts/1
+Authorization: Bearer <jwt goes here>
+
+###
+GET http://localhost:8080/api/users/1
+Authorization: Bearer <jwt goes here>
+
+###
+GET http://localhost:8080/api/albums/1
+Authorization: Bearer <jwt goes here>
+
+
+
+###
+POST http://localhost:8080/api/posts/1
+Authorization: Bearer <jwt goes here>
+
+###
+POST http://localhost:8080/api/albums/1
+Authorization: Bearer <jwt goes here>
+
+###
+POST http://localhost:8080/api/users/1
+Authorization: Bearer <jwt goes here>
+
+
+
+
+
+
+###
+GET http://localhost:8080/users/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6eyJ0aW1lc3RhbXAiOjE3MTAzNTk4MzksImRhdGUiOjE3MTAzNTk4MzkwMDB9LCJyb2xlIjoiUE9TVFMiLCJzdWIiOiJwb3N0c1VzZXIiLCJpYXQiOjE3MTAzNTk4NTAsImV4cCI6MTcxMDQ0NjI1MH0.UBp90kjS14fc3A35AGLzdh9VHQSuNWSxv-jQGJ7H82s

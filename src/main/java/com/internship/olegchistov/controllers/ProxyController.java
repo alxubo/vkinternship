@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.cache.annotation.Cacheable;
 
 
 @RestController
@@ -21,6 +22,7 @@ public class ProxyController {
 
     private static final String JSON_PLACEHOLDER_URL = "https://jsonplaceholder.typicode.com/";
 
+    @Cacheable(value = "proxyCache", key = "#request.getRequestURI() + #method")
     @RequestMapping(
             value = {"/posts/**", "/users/**", "/albums/**"},
             method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
